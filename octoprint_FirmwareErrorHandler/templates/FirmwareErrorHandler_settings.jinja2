@@ -1,0 +1,23 @@
+<div class="FirmwareErrorHandlersettings">
+    <h4>FirmwareErrorHandler Settings</h4>
+	<table class="table table-condensed" data-bind='visible: settingsViewModel.settings.plugins.FirmwareErrorHandler.errors().length > 0'>
+		<tbody data-bind='foreach: settingsViewModel.settings.plugins.FirmwareErrorHandler.errors'>
+			<tr data-bind='attr: {title: error}' class="info">
+				<td colspan="2"><label class="control-label">{{ _('Error') }}</label><input data-bind='value: error, uniqueName: true' class="input-sm" placeholder="enter error message" /></td>
+				<td colspan="2"><label class="control-label" data-bind='visible: error().length > 0'>{{ _('Message Type') }}</label><select data-bind="options: $root.msgTypes, optionsText: 'name', optionsValue: 'value', value: msgtype, uniqueName: true, visible: error().length > 0"></select></td>
+				<td style="text-align:right"><a href="#" class="icon-trash" data-bind="click: $root.removeError, visible: $root.settingsViewModel.settings.plugins.FirmwareErrorHandler.errors().length > 1"></a></td>
+			</tr>
+			<tr data-bind='visible: error().length > 0, attr: {title: error}'>
+				<td><label class="control-label">{{ _('Auto Close') }}</label><input type="checkbox" data-bind="checked: autoclose, uniqueName: true" title="Automatically close pop-up message" /></td>
+				<td><label class="control-label">{{ _('Disconnect on error') }}</label><input type="checkbox" data-bind="checked: disconnect, uniqueName: true" title="Disconnect on Error" /></td>
+				<td><label class="control-label">{{ _('Passthrough') }}</label><input type="checkbox" data-bind="checked: passthrough, uniqueName: true" title="Pass error message on to octoprint" /></td>
+				<td colspan="2"><label class="control-label">{{ _('Command on error') }}</label><input data-bind="value: cmd_on_error, uniqueName: true" class="input-sm" placeholder="enter system command" /></td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="control-group">
+		<div class="controls">
+			<button data-bind='click: addError' class="btn btn-primary">Add Error</button>
+		</div>
+	</div>
+</div>
